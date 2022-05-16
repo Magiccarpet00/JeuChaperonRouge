@@ -2,7 +2,7 @@ package com.example.game;
 
 import javafx.scene.shape.Rectangle;
 
-public abstract class Cell {
+public class Cell {
 
     private int x,y;
 
