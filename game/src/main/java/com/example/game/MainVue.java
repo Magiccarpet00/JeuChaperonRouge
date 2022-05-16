@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainVue extends Application {
 
-    private GridPane grid_backGround = new GridPane(); //Le grid où il y a les chemins et les cases vertes , la maison
+    private GridPane grid_back = new GridPane(); //Le grid où il y a les chemins et les cases vertes , la maison
     private GridPane grid_front  = new GridPane();     //Le grid où il y a les personage, les arbres
     private StackPane grid_stack = new StackPane(); //Stack afin d'empiler les 2 gridPane
 
@@ -38,22 +38,36 @@ public class MainVue extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
+            System.out.println("Handler caught exception: "+throwable.getMessage());
+        });
+
         for(int i = 0; i <= SIZE_GRID; i++){
-            for(int j = 0; j <= SIZE_GRID; i++){
+            for(int j = 0; j <= SIZE_GRID; j++){
                 Rectangle square_back = new Rectangle(j, i, 20,20);
                 Rectangle square_front = new Rectangle(j, i, 20,20);
+                grid_back.add(square_back,j,i);
+                grid_front.add(square_front,j,i);
                 Cell c = new Cell(j,i,square_front,square_back);
                 listCells.add(c);
             }
         }
-//        grid_stack.getChildren().addAll(grid_backGround,grid_front);
-//        root.getChildren().addAll(grid_stack, selectPath, selectButton);
+        grid_stack.getChildren().addAll(grid_back,grid_front);
+        root.getChildren().addAll(grid_stack, selectPath, selectButton);
+        draw();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+//        FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(root, 320, 240);
+        stage.setTitle("Game");
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    public void draw(){
+        for (int i = 0; i < listCells.size(); i++){
+            listCells.get(i).drawCell();
+        }
     }
 
     public static void main(String[] args) {
