@@ -34,6 +34,7 @@ public class MainVue extends Application {
     private Button btnExecute = new Button();
 
     private int SIZE_GRID = 3;
+    private int SIZE_RECT = 70;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -44,8 +45,8 @@ public class MainVue extends Application {
 
         for(int i = 0; i <= SIZE_GRID; i++){
             for(int j = 0; j <= SIZE_GRID; j++){
-                Rectangle square_back = new Rectangle(j, i, 20,20);
-                Rectangle square_front = new Rectangle(j, i, 20,20);
+                Rectangle square_back = new Rectangle(j, i, SIZE_RECT,SIZE_RECT);
+                Rectangle square_front = new Rectangle(j, i, SIZE_RECT,SIZE_RECT);
                 grid_back.add(square_back,j,i);
                 grid_front.add(square_front,j,i);
                 Cell c = new Cell(j,i,square_front,square_back);
@@ -56,19 +57,21 @@ public class MainVue extends Application {
         root.getChildren().addAll(grid_stack, selectPath, selectButton);
         draw();
 
+
 //        FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(root, 320, 240);
+        Scene scene = new Scene(root, 600, 400);
         stage.setTitle("Game");
         stage.setScene(scene);
         stage.show();
     }
-
 
     public void draw(){
         for (int i = 0; i < listCells.size(); i++){
             listCells.get(i).drawCell();
         }
     }
+
+
 
     public static void main(String[] args) {
         launch();

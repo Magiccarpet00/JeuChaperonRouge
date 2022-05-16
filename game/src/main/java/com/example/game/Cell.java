@@ -18,11 +18,18 @@ public class Cell {
     }
 
     public void drawCell(){
+        strokeCell();
 
         //back
         rectBack.setFill(Color.GREEN);
+
         //front
         rectFront.setFill(Color.TRANSPARENT);
+    }
+
+    public void strokeCell(){
+        rectFront.setStroke(Color.BLACK);
+        rectBack.setStroke(Color.BLACK);
     }
 
 }
