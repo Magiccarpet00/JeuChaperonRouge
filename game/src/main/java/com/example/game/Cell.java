@@ -21,7 +21,7 @@ public class Cell {
         strokeCell();
 
         //back
-        rectBack.setFill(Color.GREEN);
+        rectBack.setFill(Color.RED);
 
         //front
         rectFront.setFill(Color.TRANSPARENT);
