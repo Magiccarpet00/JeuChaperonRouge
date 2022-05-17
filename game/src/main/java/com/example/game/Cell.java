@@ -22,9 +22,13 @@ public class Cell {
 
         //back
         rectBack.setFill(Color.GREEN);
+        rectBack.setArcHeight(10);
+        rectBack.setArcWidth(10);
 
         //front
         rectFront.setFill(Color.TRANSPARENT);
+        rectFront.setArcHeight(10);
+        rectFront.setArcWidth(10);
     }
 
     public void strokeCell(){

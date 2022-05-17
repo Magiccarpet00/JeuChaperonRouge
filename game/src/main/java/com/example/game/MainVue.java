@@ -2,6 +2,7 @@ package com.example.game;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -53,13 +54,19 @@ public class MainVue extends Application {
                 listCells.add(c);
             }
         }
+
         grid_stack.getChildren().addAll(grid_back,grid_front);
+        grid_stack.setPadding(new Insets(10));
+        grid_back.setVgap(1);
+        grid_back.setHgap(1);
+        grid_front.setVgap(1);
+        grid_front.setHgap(1);
         root.getChildren().addAll(grid_stack, selectPath, selectButton);
         draw();
 
 
 //        FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root);
         stage.setTitle("Game");
         stage.setScene(scene);
         stage.show();
