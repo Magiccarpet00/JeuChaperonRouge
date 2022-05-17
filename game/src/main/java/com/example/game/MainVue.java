@@ -87,7 +87,11 @@ public class MainVue extends Application {
 
     // [TEMPORAIRE] fonction pour effectuer des test
     public void oldMain(){
-        c.selectCell(2,2).drawTemp();
+        c.selectCell(2,2).setType_cell(1);
+        c.selectCell(2,3).setType_cell(2);
+        c.selectCell(1,2).setType_cell(3);
+        c.selectCell(2,0).setType_cell(4);
+        draw();
     }
 
     public List<Cell> getListCells() {
