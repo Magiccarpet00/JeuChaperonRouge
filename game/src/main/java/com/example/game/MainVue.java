@@ -42,23 +42,33 @@ public class MainVue extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
-            System.out.println("Handler caught exception: "+throwable.getMessage());
-        });
+        createGrid();
+        setupGrid();
+        draw();
 
+        //FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("Chaperon Rouge");
+        stage.setScene(scene);
+        stage.show();
+
+        oldMain(); // fonction provisoire pour afficher dans la console
+    }
+
+    public void createGrid(){
         for(int i = 0; i <= SIZE_GRID; i++){
             for(int j = 0; j <= SIZE_GRID; j++){
                 Rectangle square_back = new Rectangle(j, i, SIZE_RECT,SIZE_RECT);
                 Rectangle square_front = new Rectangle(j, i, SIZE_RECT,SIZE_RECT);
                 grid_back.add(square_back,j,i);
                 grid_front.add(square_front,j,i);
-
                 Cell c = new Cell(j,i,square_front,square_back);
                 listCells.add(c);
-
             }
         }
+    }
 
+    public void setupGrid() {
         grid_stack.getChildren().addAll(grid_back,grid_front);
         grid_stack.setPadding(new Insets(10));
         grid_back.setVgap(1);
@@ -66,17 +76,6 @@ public class MainVue extends Application {
         grid_front.setVgap(1);
         grid_front.setHgap(1);
         root.getChildren().addAll(grid_stack, selectPath, selectButton);
-
-        draw();
-
-
-//        FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(root);
-        stage.setTitle("Game");
-        stage.setScene(scene);
-        stage.show();
-
-        oldMain(); // fonction provisoire pour afficher dans la console
     }
 
     public void draw(){

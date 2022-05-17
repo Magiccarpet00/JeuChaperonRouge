@@ -13,18 +13,18 @@ public class Cell {
     private Rectangle rectFront;
     private Rectangle rectBack;
 
-    //Type de cellule ( 0 = vide
+    //Type de cellule
+    //0 = vide
     //1 = arbre
     //2 = maison
     //3 = chaperon
-    //4 = loup)
-    private int type_cell = 0;
+    //4 = loup
+    private int type_cell;
 
     Image img_wolf = new Image("file:src/main/resources/com/example/game/wolf.png");
     Image img_tree = new Image("file:src/main/resources/com/example/game/tree.png");
     Image img_chaperon = new Image("file:src/main/resources/com/example/game/chaperon.png");
     Image img_house = new Image("file:src/main/resources/com/example/game/house.png");
-
 
     public Cell(int a,int b, Rectangle front, Rectangle back){
         this.x = a;
