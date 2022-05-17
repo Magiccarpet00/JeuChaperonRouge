@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +38,9 @@ public class MainVue extends Application {
     private int SIZE_RECT = 70;
 
     private Controller c = new Controller(this);
+
+    public MainVue() throws FileNotFoundException {
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -85,11 +88,8 @@ public class MainVue extends Application {
     }
 
     // [TEMPORAIRE] fonction pour effectuer des test
-    public void oldMain(){
-        c.selectCell(2,2).setType_cell(1);
-        c.selectCell(2,3).setType_cell(2);
-        c.selectCell(1,2).setType_cell(3);
-        c.selectCell(2,0).setType_cell(4);
+    public void oldMain() throws IOException {
+        c.createLevel();
         draw();
     }
 
@@ -99,5 +99,6 @@ public class MainVue extends Application {
 
     public static void main(String[] args) {
         launch();
+
     }
 }
