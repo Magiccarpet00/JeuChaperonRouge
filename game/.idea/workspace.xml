@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e450fac7-5476-4958-8ead-5b25aaa7be49" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/Chaperon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/Chaperon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/House.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/House.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/Tree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/Wolf.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/Wolf.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +34,26 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
+  <component name="RunManager">
+    <configuration name="MainVue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.game.MainVue" />
+      <module name="game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainVue" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -37,6 +63,9 @@
       <option name="presentableId" value="Default" />
       <updated>1652698555713</updated>
       <workItem from="1652698563559" duration="891000" />
+      <workItem from="1652699642346" duration="2060000" />
+      <workItem from="1652776169068" duration="16000" />
+      <workItem from="1652778784302" duration="227000" />
     </task>
     <servers />
   </component>
