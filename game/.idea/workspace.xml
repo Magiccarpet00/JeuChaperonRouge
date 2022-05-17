@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e450fac7-5476-4958-8ead-5b25aaa7be49" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/game.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/Chaperon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/Chaperon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/House.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/House.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/Tree.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/game/Wolf.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/game/Wolf.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +35,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
     <configuration name="MainVue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -60,6 +73,7 @@
       <workItem from="1652699642346" duration="2060000" />
       <workItem from="1652776169068" duration="16000" />
       <workItem from="1652778784302" duration="701000" />
+      <workItem from="1652699781496" duration="166000" />
     </task>
     <servers />
   </component>
