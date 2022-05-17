@@ -1,5 +1,6 @@
 package com.example.game;
 
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 
 public class Chaperon extends Cell{
@@ -12,6 +13,8 @@ public class Chaperon extends Cell{
 
     @Override
     public void drawCell(){
+        Image img_chaperon = new Image("file:src/main/resources/com/example/game/chaperon.png");
+
 
     }
 }

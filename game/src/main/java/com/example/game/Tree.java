@@ -1,5 +1,6 @@
 package com.example.game;
 
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 
 public class Tree extends Cell{
@@ -9,6 +10,8 @@ public class Tree extends Cell{
 
     @Override
     public void drawCell(){
+        Image img_tree = new Image("file:src/main/resources/com/example/game/tree.png");
+
 
     }
 }

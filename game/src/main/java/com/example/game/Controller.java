@@ -2,10 +2,17 @@ package com.example.game;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Rectangle;
 
 public class Controller {
     @FXML
     private Label welcomeText;
+
+    private MainVue mv;
+
+    public Controller(MainVue v){
+        this.mv = v;
+    }
 
     @FXML
     protected void onHelloButtonClick() {
@@ -32,6 +39,16 @@ public class Controller {
 
     public void rotate(){
         
+    }
+
+    public Cell selectCell(int x, int y){
+        Cell c = new Cell(0,0,new Rectangle(), new Rectangle());
+        for (int i = 0; i<mv.getListCells().size(); i++){
+            if(mv.getListCells().get(i).getX() == x && mv.getListCells().get(i).getY() == y){
+                c = mv.getListCells().get(i);
+            }
+        }
+        return c;
     }
 
 }

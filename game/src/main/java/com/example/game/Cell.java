@@ -1,5 +1,6 @@
 package com.example.game;
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -9,6 +10,10 @@ public class Cell {
 
     private Rectangle rectFront;
     private Rectangle rectBack;
+
+    Image img_wolf = new Image("file:src/main/resources/com/example/game/wolf.png");
+    Image img_tree = new Image("file:src/main/resources/com/example/game/tree.png");
+    Image img_chaperon = new Image("file:src/main/resources/com/example/game/chaperon.png");
 
     public Cell(int a,int b, Rectangle front, Rectangle back){
         this.x = a;
@@ -35,5 +40,18 @@ public class Cell {
         rectFront.setStroke(Color.BLACK);
         rectBack.setStroke(Color.BLACK);
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    public void drawTemp() {
+        rectFront.setFill(Color.BLUEVIOLET);
+    }
+
 
 }

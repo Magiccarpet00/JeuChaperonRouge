@@ -37,6 +37,8 @@ public class MainVue extends Application {
     private int SIZE_GRID = 3;
     private int SIZE_RECT = 70;
 
+    private Controller c = new Controller(this);
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -50,8 +52,10 @@ public class MainVue extends Application {
                 Rectangle square_front = new Rectangle(j, i, SIZE_RECT,SIZE_RECT);
                 grid_back.add(square_back,j,i);
                 grid_front.add(square_front,j,i);
+
                 Cell c = new Cell(j,i,square_front,square_back);
                 listCells.add(c);
+
             }
         }
 
@@ -62,6 +66,7 @@ public class MainVue extends Application {
         grid_front.setVgap(1);
         grid_front.setHgap(1);
         root.getChildren().addAll(grid_stack, selectPath, selectButton);
+
         draw();
 
 
@@ -70,6 +75,8 @@ public class MainVue extends Application {
         stage.setTitle("Game");
         stage.setScene(scene);
         stage.show();
+
+        oldMain(); // fonction provisoire pour afficher dans la console
     }
 
     public void draw(){
@@ -78,7 +85,14 @@ public class MainVue extends Application {
         }
     }
 
+    // [TEMPORAIRE] fonction pour effectuer des test
+    public void oldMain(){
+        c.selectCell(2,2).drawTemp();
+    }
 
+    public List<Cell> getListCells() {
+        return listCells;
+    }
 
     public static void main(String[] args) {
         launch();
