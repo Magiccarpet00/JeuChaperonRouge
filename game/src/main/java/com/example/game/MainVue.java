@@ -1,6 +1,8 @@
 package com.example.game;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -34,6 +36,8 @@ public class MainVue extends Application {
     private Button btnRotate = new Button();
     private Button btnExecute = new Button();
 
+    private Button btnNext = new Button("next level") ;
+
     private int SIZE_GRID = 3;
     private int SIZE_RECT = 70;
 
@@ -50,6 +54,7 @@ public class MainVue extends Application {
         draw();
 
         //FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
+        root.getChildren().add(btnNext);
         Scene scene = new Scene(root);
         stage.setTitle("Chaperon Rouge");
         stage.setScene(scene);
@@ -89,8 +94,22 @@ public class MainVue extends Application {
 
     // [TEMPORAIRE] fonction pour effectuer des test
     public void oldMain() throws IOException {
-        c.createLevel();
+        c.lireNiveaux();
+        c.createNextLevel();
         draw();
+
+        btnNext.setOnAction(new EventHandler <ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    c.createNextLevel() ;
+                    draw();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     public List<Cell> getListCells() {

@@ -6,16 +6,17 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.*;
 import java.io.File;
+import java.util.ArrayList;
 
 public class Controller {
     @FXML
     private Label welcomeText;
 
+    private static int numNiveau = 0 ;
+
     private MainVue mv;
 
-    //public File doc = new File("config.txt");
-    //public BufferedReader obj = new BufferedReader(new FileReader(doc));
-
+    private ArrayList<Niveau> niveaux = new ArrayList<Niveau>();
 
     public Controller(MainVue v) throws FileNotFoundException {
         this.mv = v;
@@ -58,21 +59,36 @@ public class Controller {
         return c;
     }
 
-    public int[] tabNiveau() throws IOException {
+    public void lireNiveaux() throws IOException {
         File doc = new File("src\\main\\resources\\config.txt");
         BufferedReader obj = new BufferedReader(new FileReader(doc));
-        int[] values = new int[16];
-        String nextLine = obj.readLine() ;
-        String[] temp = nextLine.split(" ");
-        for (int i = 0 ; i < temp.length ; i++){
-            values[i] = Integer.parseInt(temp[i]) ;
+        String line ;
+        while ((line = obj.readLine()) != null){
+            Niveau level = new Niveau() ;
+            int[] values = new int[16] ;
+            String[] temp = line.split(" ");
+            for (int i = 0 ; i < temp.length ; i++){
+                values[i] = Integer.parseInt(temp[i]) ;
+            }
+            level.setNiveau(values);
+            niveaux.add(level) ;
         }
-        return values ;
     }
 
-    public void createLevel() throws IOException {
-        for (int i = 0 ; i < this.tabNiveau().length ; i++){
-            mv.getListCells().get(i).setType_cell(tabNiveau()[i]);
+    public void createNextLevel() throws IOException {
+        int[] current = new int[16] ;
+        if (numNiveau < niveaux.size()){
+            current = niveaux.get(numNiveau).getNiveau() ;
+            for (int i = 0 ; i < current.length ; i++){
+                mv.getListCells().get(i).setType_cell(current[i]);
+            }
+            numNiveau++ ;
+        }
+        else {
+            for (int i = 0 ; i < current.length ; i++){
+                current[i] = 0 ;
+                mv.getListCells().get(i).setType_cell(current[i]);
+            }
         }
     }
 
