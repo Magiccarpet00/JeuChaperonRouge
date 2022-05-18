@@ -28,6 +28,12 @@ public class Controller {
     }
     //test git
     //Felix: je sais pas a quoi ça sert le truc au dessus
+    public  void play (){
+
+    }
+    public void configurer (){
+
+    }
 
     public void eventReset(){
 
@@ -46,7 +52,7 @@ public class Controller {
     }
 
     public void rotate(){
-        
+
     }
 
     public Cell selectCell(int x, int y){
