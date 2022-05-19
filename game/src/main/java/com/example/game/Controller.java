@@ -14,7 +14,7 @@ public class Controller {
     @FXML
     private Label welcomeText;
 
-    private static int numNiveau = 0 ;
+    private static int numNiveau ;
 
     private MainVue mv;
 
@@ -74,24 +74,25 @@ public class Controller {
         }
     }
 
-    public void loadLevel(int numNiveau) {
+    public void loadLevel(int nblevel) {
         int[] current = new int[16] ;
-        if (numNiveau < niveaux.size()){
-            current = niveaux.get(numNiveau).getNiveau() ;
+        if (nblevel < niveaux.size()){
+            current = niveaux.get(nblevel).getNiveau() ;
             for (int i = 0 ; i < current.length ; i++){
                 mv.getListCells().get(i).setType_cell(current[i]);
             }
+            numNiveau = nblevel ;
         }
     }
 
     public void createNextLevel() throws IOException {
+        numNiveau++ ;
         int[] current = new int[16] ;
         if (numNiveau < niveaux.size()){
             current = niveaux.get(numNiveau).getNiveau() ;
             for (int i = 0 ; i < current.length ; i++){
                 mv.getListCells().get(i).setType_cell(current[i]);
             }
-            numNiveau++ ;
         }
         else {
             for (int i = 0 ; i < current.length ; i++){
