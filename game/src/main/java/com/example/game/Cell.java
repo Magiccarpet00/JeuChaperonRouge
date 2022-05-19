@@ -13,7 +13,7 @@ public class Cell {
     private Rectangle rectFront;
     private Rectangle rectBack;
 
-    //Type de cellule
+    //Type de cellule :
     //0 = vide
     //1 = arbre
     //2 = maison

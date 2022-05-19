@@ -26,15 +26,16 @@ public class MainVue extends Application {
     private Stage primaryStage ;
 
     private GridPane grid_back = new GridPane(); //Le grid où il y a les chemins et les cases vertes , la maison
-    private GridPane grid_front  = new GridPane();     //Le grid où il y a les personage, les arbres
+    private GridPane grid_front  = new GridPane(); //Le grid où il y a les personage, les arbres
     private StackPane grid_stack = new StackPane(); //Stack afin d'empiler les 2 gridPane
 
     private List<Cell> listCells = new ArrayList<Cell>();
+    private List<Path> listPath = new ArrayList<Path>();
 
     private VBox selectPath = new VBox();
     private VBox selectButton = new VBox();
 
-    private HBox root = new HBox();
+    private Pane cadre = new Pane();
 
     private Button btnReset = new Button();
     private Button btnRotate = new Button();
@@ -49,6 +50,8 @@ public class MainVue extends Application {
     private Stage stage ;
     private Stage configuration ;
 
+
+    //MENU ---------------------------------------------------
     private Pane headertext = new Pane(); // contient scenetitle
     private BorderPane contenaire = new BorderPane();
     private GridPane paneButton_configuration = new GridPane(); // On utilise le GridPane pour organiser les buttons des 6 niveaux
@@ -57,7 +60,6 @@ public class MainVue extends Application {
     private BorderPane contente_configuration = new BorderPane(); //contient racine_configuration; contenaire_configuration, vbox_button_configuration
 
     // les differents buttons
-
     private Button [] btns;
     private Button game = new Button("PLAY");
     private Button parametre  = new Button("SELECT LEVEL");
@@ -69,15 +71,12 @@ public class MainVue extends Application {
     private VBox vbox_button_configuration = new VBox(20);
 
     // Labels des 6 niveaux
-
     private String[] btnLabels = {  // Labels des 6 niveaux
-
             "1", "2", "3",
             "4", "5", "6",
     };
 
     // text scenetitle
-
     private Text scenetitle = new Text("            Welcome to\nRed Riding Hood The GAME");
     private Text scenetitle_Configuration  = new Text("  PLEASE SELECT LEVEL");
 
@@ -85,20 +84,17 @@ public class MainVue extends Application {
     }
 
     @Override
-
-
     public void start (Stage primaryStage) throws IOException {
-
+        //Menu du jeu
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Red Riding Hood");
         scenetitle.setId("Bienvenue-text");
         primaryStage.setResizable(true);
         primaryStage.setMinWidth(500);
 
-        createButton();          // contient les trois buttons play, select level, quit
+        createButton(); // contient les trois buttons play, select level, quit
         setContenaire_Start (); // contient les buttons et le texte
-        create_Hbox_Start();   // contient les le tetxe Welcome to Red Riding Hood The GAME
-
+        create_Hbox_Start(); // contient les le tetxe Welcome to Red Riding Hood The GAME
 
         Scene scene = new Scene( contenaire,  500, 400);
         scene.getStylesheets().add("Style.css");
@@ -107,7 +103,6 @@ public class MainVue extends Application {
     }
 
     public void configurer () {
-
         Stage configuration = new Stage();
         this.configuration = configuration;
         configuration.setTitle("CONFIGURATION");
@@ -121,7 +116,6 @@ public class MainVue extends Application {
         set_contenaire_configuration();
         set_contente_configuration() ;
 
-
         GridPane.setHalignment(scenetitle_Configuration , HPos.CENTER);
         Scene scene = new Scene( contente_configuration,  400, 400);
         scene.getStylesheets().add("Style.css");
@@ -130,31 +124,32 @@ public class MainVue extends Application {
     }
 
     public void play (int b) throws IOException{
+        //Fermeture du menu
         primaryStage.close();
         Stage stage = new  Stage();
         this.stage = stage;
         createGrid();
+        createPathBox();
         setupGrid();
         c.loadLevel(b);
-        draw();
 
         //FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
-        root.getChildren().add(btnNext);
-        Scene scene = new Scene(root);
+
+        //Lancement de la fenetre du jeu
+        cadre.getChildren().add(btnNext);
+        Scene scene = new Scene(cadre, 600, 400);
         stage.setTitle("Chaperon Rouge");
         stage.setScene(scene);
         stage.show();
+
+        draw();//attention peu etre avant
 
         oldMain(b); // fonction provisoire pour afficher dans la console
     }
 
     public void createButton(){
-
-
         game.setId("button-even");
-
-        game.setOnAction( e ->
-        {
+        game.setOnAction( e -> {
             try {
                 play(0);
             } catch (IOException ex) {
@@ -163,16 +158,12 @@ public class MainVue extends Application {
         });
 
         parametre.setId("button-even");
-
-        parametre.setOnAction( e ->
-        {
+        parametre.setOnAction( e -> {
             configurer();
         });
 
         quit.setId("button-even");
-
-        quit.setOnAction( e ->
-        {
+        quit.setOnAction( e -> {
             Platform.exit();
         });
 
@@ -185,7 +176,6 @@ public class MainVue extends Application {
     }
 
     public void setContenaire_Start (){
-
         contenaire.setTop(headertext);
         contenaire.setCenter(vbox_button_start );
     }
@@ -202,34 +192,23 @@ public class MainVue extends Application {
     public void create_button_level(){
         //créer les  6 Buttons  3x2 btn
         int nbCols = 3;
-
         paneButton_configuration.setGridLinesVisible(false);
-
         // Padding : top, right, bottom, left
         paneButton_configuration.setPadding(new Insets(10, 10, 10, 10));
-
         // Espacement vertical entre les noeuds (composants)
         paneButton_configuration.setVgap(20);
-
         // Espacement horizontal entre les noeuds (composants)
         paneButton_configuration.setHgap(20);
-
         // créer les  6 Botuons et les ajouter au GridPane
         btns = new Button[6];
-
         quit_the_game.setId("button-even");
-
-        quit_the_game.setOnAction(e ->
-        {
+        quit_the_game.setOnAction(e -> {
             Platform.exit();
         });
 
-
         quit_the_game.setMinSize(150, 50);
-
         for (int i = 0; i <6; ++i) {
             btns[i] = new Button(btnLabels[i]);
-
             // associer l'auditeur à tous les boutons.
             int finalI = i;
             btns[i].setOnAction(event -> {
@@ -240,7 +219,6 @@ public class MainVue extends Application {
                 }
                 configuration.close();
             });
-
             btns[i].setId("button-even");
             btns[i].setMinSize(50, 50);
             // Placement des boutons selon les règles du GridPane (composant, col, ligne)
@@ -290,17 +268,30 @@ public class MainVue extends Application {
 
     public void setupGrid() {
         grid_stack.getChildren().addAll(grid_back,grid_front);
-        grid_stack.setPadding(new Insets(10));
+        grid_stack.setPadding(new Insets(50,10,10,50));
         grid_back.setVgap(1);
         grid_back.setHgap(1);
         grid_front.setVgap(1);
         grid_front.setHgap(1);
-        root.getChildren().addAll(grid_stack, selectPath, selectButton);
+        cadre.getChildren().addAll(grid_stack, selectPath, selectButton);
+        grid_stack.toBack();
+        cadre.setStyle("-fx-background-color: #7d40af");
+    }
+
+    private void createPathBox() {
+        for(int i = 0; i < 5; i++){
+            Path p = new Path(i ,400, 75*(i)+15);
+            listPath.add(p);
+            cadre.getChildren().add(listPath.get(i).getTile());
+        }
     }
 
     public void draw(){
         for (int i = 0; i < listCells.size(); i++){
             listCells.get(i).drawCell();
+        }
+        for (int i = 0; i < listPath.size(); i++){
+            listPath.get(i).drawPath();
         }
     }
 
@@ -310,7 +301,6 @@ public class MainVue extends Application {
         c.createNextLevel();
         c.loadLevel(a);
         draw();
-
         btnNext.setOnAction(new EventHandler <ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -330,6 +320,5 @@ public class MainVue extends Application {
 
     public static void main(String[] args) {
         launch();
-
     }
 }
