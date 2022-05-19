@@ -81,6 +81,16 @@ public class Controller {
         }
     }
 
+    public void loadLevel(int numNiveau) {
+        int[] current = new int[16] ;
+        if (numNiveau < niveaux.size()){
+            current = niveaux.get(numNiveau).getNiveau() ;
+            for (int i = 0 ; i < current.length ; i++){
+                mv.getListCells().get(i).setType_cell(current[i]);
+            }
+        }
+    }
+
     public void createNextLevel() throws IOException {
         int[] current = new int[16] ;
         if (numNiveau < niveaux.size()){
