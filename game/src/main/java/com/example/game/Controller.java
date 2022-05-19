@@ -19,6 +19,8 @@ public class Controller {
     private MainVue mv;
 
     private ArrayList<Niveau> niveaux = new ArrayList<Niveau>();
+    private ArrayList<Solution> solutions = new ArrayList<Solution>();
+    private Path[] solutionPaths;
 
     public Controller(MainVue v) throws FileNotFoundException {
         this.mv = v;
@@ -74,6 +76,44 @@ public class Controller {
         }
     }
 
+    public void lireSolutions() throws IOException {
+        File doc = new File("src\\main\\resources\\soluce.txt.txt");
+        BufferedReader obj = new BufferedReader(new FileReader(doc));
+        String line ;
+        while ((line = obj.readLine()) != null){
+            Solution sol = new Solution() ;
+            int[] solution = new int[20] ;
+            String[] temp = line.split(" ");
+            for (int i = 0 ; i < temp.length ; i++){
+                solution[i] = Integer.parseInt(temp[i]) ;
+            }
+            sol.setSolution(solution);
+            solutions.add(sol) ;
+        }
+
+
+    }
+
+    public void createSolutionPaths() throws IOException {
+        lireSolutions();
+        int niveau = numNiveau ;
+        int[] solution = solutions.get(numNiveau).getSolution() ;
+        int count =0;
+        for (int i = 0 ; i < 5 ; i ++){
+            solutionPaths[i] = new Path(count, solution[count+1], solution[count+2]) ;
+            count +=3;
+        }
+    }
+
+    public void compareToWin() throws IOException {
+        createSolutionPaths();
+        List<Path> currentPaths = mv.getListPath() ;
+        boolean reussi = false ;
+        for (int i = 0 ; i < currentPaths.size() ; i++){
+            ;
+        }
+    }
+
     public void loadLevel(int nblevel) {
         int[] current = new int[16] ;
         if (nblevel < niveaux.size()){
@@ -100,5 +140,9 @@ public class Controller {
                 mv.getListCells().get(i).setType_cell(current[i]);
             }
         }
+    }
+
+    public int getNumNiveau(){
+        return numNiveau ;
     }
 }

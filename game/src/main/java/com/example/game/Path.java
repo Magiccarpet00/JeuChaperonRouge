@@ -6,6 +6,11 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 public class Path {
     private int rotation;
     private int type;
@@ -42,6 +47,7 @@ public class Path {
     Image path5_r1 = new Image("file:src/main/resources/com/example/game/path5_R1.png");
     Image path5_r2 = new Image("file:src/main/resources/com/example/game/path5_R2.png");
     Image path5_r3 = new Image("file:src/main/resources/com/example/game/path5_R3.png");
+
     public Path(int type, double x, double y){
         this.rotation = 0;
         this.type = type;
@@ -75,17 +81,21 @@ public class Path {
                         if (gridX < 4 && gridY < 5 && gridY > 0 && gridX > 0) {
                             tile.setX((gridX-1)*72+50);
                             tile.setY((gridY-1)*72+50);
+                            this.onGrid = true ;
                         } else {
                             tile.setX(x);
                             tile.setY(y);
+                            this.onGrid = false ;
                         }
                     } else {
                         if (gridX < 5 && gridY < 4 && gridX > 0 && gridY > 0) {
                             tile.setX((gridX-1)*72+50);
                             tile.setY((gridY-1)*72+50);
+                            this.onGrid = true ;
                         } else {
                             tile.setX(x);
                             tile.setY(y);
+                            this.onGrid = false ;
                         }
                     }
                 }
