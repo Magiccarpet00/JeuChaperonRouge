@@ -46,6 +46,10 @@ public class MainVue extends Application {
     private int SIZE_GRID = 3;
     private int SIZE_RECT = 70;
 
+    public Controller getC() {
+        return c;
+    }
+
     private Controller c = new Controller(this);
     private Stage stage ;
     private Stage configuration ;
@@ -280,7 +284,7 @@ public class MainVue extends Application {
 
     private void createPathBox() {
         for(int i = 0; i < 5; i++){
-            Path p = new Path(i ,400, 75*(i)+15);
+            Path p = new Path(i ,400, 75*(i)+15, this);
             listPath.add(p);
             cadre.getChildren().add(listPath.get(i).getTile());
         }

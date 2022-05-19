@@ -74,6 +74,7 @@ public class Controller {
             level.setNiveau(values);
             niveaux.add(level) ;
         }
+        System.out.println(niveaux.size());
     }
 
     public void lireSolutions() throws IOException {
