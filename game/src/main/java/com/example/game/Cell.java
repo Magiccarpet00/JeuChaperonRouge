@@ -13,6 +13,16 @@ public class Cell {
     private Rectangle rectFront;
     private Rectangle rectBack;
 
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
+
+    private boolean isEmpty;
+
     //Type de cellule :
     //0 = vide
     //1 = arbre
@@ -41,24 +51,28 @@ public class Cell {
                 rectBack.setArcHeight(10);
                 rectBack.setArcWidth(10);
                 rectFront.setFill(new ImagePattern(img_tree));
+                isEmpty = false;
                 break;
             case 2 :
                 rectBack.setFill(Color.GREEN);
                 rectBack.setArcHeight(10);
                 rectBack.setArcWidth(10);
                 rectFront.setFill(new ImagePattern(img_house));
+                isEmpty = false;
                 break;
             case 3 :
                 rectBack.setFill(Color.GREEN);
                 rectBack.setArcHeight(10);
                 rectBack.setArcWidth(10);
                 rectFront.setFill(new ImagePattern(img_chaperon));
+                isEmpty = false;
                 break;
             case 4 :
                 rectBack.setFill(Color.GREEN);
                 rectBack.setArcHeight(10);
                 rectBack.setArcWidth(10);
                 rectFront.setFill(new ImagePattern(img_wolf));
+                isEmpty = false;
                 break;
             default:
                 //back
@@ -69,6 +83,7 @@ public class Cell {
                 rectFront.setFill(Color.TRANSPARENT);
                 rectFront.setArcHeight(10);
                 rectFront.setArcWidth(10);
+                isEmpty = true;
                 break;
         }
     }

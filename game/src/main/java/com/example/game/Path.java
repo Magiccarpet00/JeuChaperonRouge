@@ -6,9 +6,14 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
+import java.util.List;
+
 public class Path {
     private int rotation;
     private int type;
+
+    private MainVue mv;
+    double gridX, gridY;
 
     private int scaleMax = 140;
     private int scaleMin = 70;
@@ -42,8 +47,9 @@ public class Path {
     Image path5_r1 = new Image("file:src/main/resources/com/example/game/path5_R1.png");
     Image path5_r2 = new Image("file:src/main/resources/com/example/game/path5_R2.png");
     Image path5_r3 = new Image("file:src/main/resources/com/example/game/path5_R3.png");
-    public Path(int type, double x, double y){
+    public Path(int type, double x, double y, MainVue mv){
         this.rotation = 0;
+        this.mv = mv;
         this.type = type;
         if (rotation == 0 || rotation == 2) {
             this.tile = new Rectangle(x , y,142, 72);
@@ -60,32 +66,71 @@ public class Path {
         );
         tile.setOnMouseDragged(
                 event -> {
+                    int gridXInt = (int) gridX;
+                    int gridYInt = (int) gridY;
+                    if (rotation == 0 || rotation == 2) {
+                        Cell testCell1 = mv.getC().selectCell(gridXInt - 1, gridYInt - 1);
+                        Cell testCell2 = mv.getC().selectCell(gridXInt, gridYInt - 1);
+                        testCell2.setEmpty(true);
+                        testCell1.setEmpty(true);
+                    } else {
+                        Cell testCell1 = mv.getC().selectCell(gridXInt - 1, gridYInt - 1);
+                        Cell testCell2 = mv.getC().selectCell(gridXInt - 1, gridYInt);
+                        testCell2.setEmpty(true);
+                        testCell1.setEmpty(true);
+                    }
                     tile.setX(event.getX()-35);
                     tile.setY(event.getY()-35);
                 }
         );
         tile.setOnMouseReleased(
                 event -> {
-                    double gridX, gridY;
                     gridX = Math.round(((event.getSceneX())-15)/72);
-                    System.out.println(gridX);
                     gridY = Math.round(((event.getSceneY())-15)/72);
-                    System.out.println(gridY);
+                    int gridXInt = (int) gridX;
+                    int gridYInt = (int) gridY;
                     if (this.rotation == 0 || this.rotation == 2) {
                         if (gridX < 4 && gridY < 5 && gridY > 0 && gridX > 0) {
-                            tile.setX((gridX-1)*72+50);
-                            tile.setY((gridY-1)*72+50);
+                            Cell testCell1 = mv.getC().selectCell(gridXInt - 1, gridYInt - 1);
+                            Cell testCell2 = mv.getC().selectCell(gridXInt, gridYInt - 1);
+                            if (testCell2.isEmpty() && testCell1.isEmpty()) {
+                                tile.setX((gridX-1)*72+50);
+                                tile.setY((gridY-1)*72+50);
+                                testCell1.setEmpty(false);
+                                testCell2.setEmpty(false);
+                            } else {
+                                tile.setX(x);
+                                tile.setY(y);
+                                gridX = 0;
+                                gridY = 0;
+                            }
                         } else {
                             tile.setX(x);
                             tile.setY(y);
+                            gridX = 0;
+                            gridY = 0;
                         }
                     } else {
                         if (gridX < 5 && gridY < 4 && gridX > 0 && gridY > 0) {
-                            tile.setX((gridX-1)*72+50);
-                            tile.setY((gridY-1)*72+50);
+                            Cell testCell1 = mv.getC().selectCell(gridXInt - 1, gridYInt - 1);
+                            Cell testCell2 = mv.getC().selectCell(gridXInt - 1, gridYInt);
+                            System.out.println("je passe");
+                            if (testCell2.isEmpty() && testCell1.isEmpty()) {
+                                tile.setX((gridX-1)*72+50);
+                                tile.setY((gridY-1)*72+50);
+                                testCell1.setEmpty(false);
+                                testCell2.setEmpty(false);
+                            } else {
+                                tile.setX(x);
+                                tile.setY(y);
+                                gridX = 0;
+                                gridY = 0;
+                            }
                         } else {
                             tile.setX(x);
                             tile.setY(y);
+                            gridX = 0;
+                            gridY = 0;
                         }
                     }
                 }
@@ -99,6 +144,7 @@ public class Path {
         }
         drawPath();
     }
+
     public void drawPath(){
         switch (this.type){
             case 0 :
