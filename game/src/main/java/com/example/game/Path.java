@@ -7,7 +7,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class Path {
-    private int rotation;
     private int type;
 
     private double x, y;
@@ -24,7 +23,6 @@ public class Path {
     public Rectangle getTile() {
         return tile;
     }
-    public int getRotation(){return rotation ;}
 
     //constructeur pas forcement pertinant
     public Path(int type, double x, double y){

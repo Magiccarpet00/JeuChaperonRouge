@@ -48,10 +48,6 @@ public class Controller {
 
     }
 
-    public void dragAndDrop(Node node){
-
-    }
-
     public Cell selectCell(int x, int y){
         Cell c = new Cell(0,0,new Rectangle(), new Rectangle());
         for (int i = 0; i<mv.getListCells().size(); i++){
