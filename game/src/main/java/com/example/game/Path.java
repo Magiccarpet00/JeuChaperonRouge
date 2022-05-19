@@ -1,6 +1,8 @@
 package com.example.game;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
@@ -22,6 +24,7 @@ public class Path {
     public Rectangle getTile() {
         return tile;
     }
+    public int getRotation(){return rotation ;}
 
     //constructeur pas forcement pertinant
     public Path(int type, double x, double y){
@@ -29,6 +32,31 @@ public class Path {
         this.x = x;
         this.y = y;
         this.tile = new Rectangle(x, y, 140,70);
+        this.tile.setOnMousePressed(event -> {
+            if (event.getButton() == MouseButton.SECONDARY){
+                rotate(this.tile) ;
+            }
+        });
+    }
+
+    public void rotate(Node node){
+        switch ((int) node.getRotate()){
+            case 0:
+                node.setRotate(90);
+                break;
+
+            case 90:
+                node.setRotate(180);
+                break;
+
+            case 180:
+                node.setRotate(270);
+                break;
+
+            case 270:
+                node.setRotate(0);
+                break;
+        }
     }
 
     public void drawPath(){

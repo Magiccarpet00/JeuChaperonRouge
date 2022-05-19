@@ -1,12 +1,14 @@
 package com.example.game;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 
 import java.io.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
     @FXML
@@ -26,8 +28,7 @@ public class Controller {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
-    //test git
-    //Felix: je sais pas a quoi ça sert le truc au dessus
+
     public  void play (){
 
     }
@@ -47,11 +48,7 @@ public class Controller {
 
     }
 
-    public void dragAndDrop(){
-
-    }
-
-    public void rotate(){
+    public void dragAndDrop(Node node){
 
     }
 

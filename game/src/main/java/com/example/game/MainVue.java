@@ -318,6 +318,10 @@ public class MainVue extends Application {
         return listCells;
     }
 
+    public List<Path> getListPath() {
+        return listPath;
+    }
+
     public static void main(String[] args) {
         launch();
     }
