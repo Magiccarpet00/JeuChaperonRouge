@@ -2,7 +2,7 @@ package com.example.game;
 
 public class Solution {
 
-    private int[] values = new int[20] ;
+    private int[] values = new int[15] ;
 
     public Solution(){
         for (int i = 0 ; i < values.length ; i++){

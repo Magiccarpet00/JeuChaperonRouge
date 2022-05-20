@@ -5,25 +5,25 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
+import java.io.*;
 
 public class Path {
-    private int rotation;
+    private int rotation ;
     private int type;
 
     private MainVue mv;
-    double gridX, gridY;
+    double gridX = 0 , gridY = 0 ;
 
     private int scaleMax = 140;
     private int scaleMin = 70;
+
     public Rectangle getTile() {
         return tile;
     }
     private boolean onGrid;
     private Rectangle tile;
+    private boolean succes ;
 
     Image path1_r0 = new Image("file:src/main/resources/com/example/game/path1_R0.png");
     Image path1_r1 = new Image("file:src/main/resources/com/example/game/path1_R1.png");
@@ -51,8 +51,11 @@ public class Path {
     Image path5_r3 = new Image("file:src/main/resources/com/example/game/path5_R3.png");
     public Path(int type, double x, double y, MainVue mv){
         this.rotation = 0;
+        this.onGrid = false ;
         this.mv = mv;
         this.type = type;
+        this.gridX = x;
+        this.gridY = y;
         if (rotation == 0 || rotation == 2) {
             this.tile = new Rectangle(x , y,142, 72);
         } else {
@@ -100,17 +103,20 @@ public class Path {
                                 tile.setY((gridY-1)*72+50);
                                 testCell1.setEmpty(false);
                                 testCell2.setEmpty(false);
+                                this.onGrid = true ;
                             } else {
                                 tile.setX(x);
                                 tile.setY(y);
                                 gridX = 0;
                                 gridY = 0;
+                                this.onGrid = false ;
                             }
                         } else {
                             tile.setX(x);
                             tile.setY(y);
                             gridX = 0;
                             gridY = 0;
+                            this.onGrid = false ;
                         }
                     } else {
                         if (gridX < 5 && gridY < 4 && gridX > 0 && gridY > 0) {
@@ -121,17 +127,35 @@ public class Path {
                                 tile.setY((gridY-1)*72+50);
                                 testCell1.setEmpty(false);
                                 testCell2.setEmpty(false);
+                                this.onGrid = true ;
                             } else {
                                 tile.setX(x);
                                 tile.setY(y);
                                 gridX = 0;
                                 gridY = 0;
+                                this.onGrid = false ;
                             }
                         } else {
                             tile.setX(x);
                             tile.setY(y);
                             gridX = 0;
                             gridY = 0;
+                            this.onGrid = false ;
+                        }
+                    }
+                    try {
+                        succes = mv.getC().compareToWin() ;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (succes){
+                        System.out.println("bravo");
+                        try {
+                            mv.getC().createNextLevel();
+                            mv.draw() ;
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -232,5 +256,15 @@ public class Path {
 
 
     }
+
+    public void setRotation(int r){this.rotation = r ;}
+
+    public boolean getOnGrid(){return onGrid ;}
+    public void setOnGrid(boolean o){onGrid = o ;}
+
+    public int getRotation(){return rotation ;}
+    public int getX(){return (int) gridX;}
+    public int getY(){return (int) gridY;}
+
 
 }

@@ -14,13 +14,13 @@ public class Controller {
     @FXML
     private Label welcomeText;
 
-    private static int numNiveau ;
+    private int numNiveau = 0;
 
     private MainVue mv;
 
     private ArrayList<Niveau> niveaux = new ArrayList<Niveau>();
     private ArrayList<Solution> solutions = new ArrayList<Solution>();
-    private Path[] solutionPaths;
+    private Path[] solutionPaths = new Path[5];
 
     public Controller(MainVue v) throws FileNotFoundException {
         this.mv = v;
@@ -74,16 +74,16 @@ public class Controller {
             level.setNiveau(values);
             niveaux.add(level) ;
         }
-        System.out.println(niveaux.size());
+        lireSolutions();
     }
 
     public void lireSolutions() throws IOException {
-        File doc = new File("src\\main\\resources\\soluce.txt.txt");
+        File doc = new File("src\\main\\resources\\soluce.txt");
         BufferedReader obj = new BufferedReader(new FileReader(doc));
         String line ;
         while ((line = obj.readLine()) != null){
             Solution sol = new Solution() ;
-            int[] solution = new int[20] ;
+            int[] solution = new int[15] ;
             String[] temp = line.split(" ");
             for (int i = 0 ; i < temp.length ; i++){
                 solution[i] = Integer.parseInt(temp[i]) ;
@@ -95,24 +95,42 @@ public class Controller {
 
     }
 
-    public void createSolutionPaths() throws IOException {
-        lireSolutions();
-        int niveau = numNiveau ;
-        int[] solution = solutions.get(numNiveau).getSolution() ;
-        int count =0;
+    public void createSolutionPaths(int niveau) throws IOException {
+        int[] solution = solutions.get(niveau).getSolution() ;
+        int count = 0;
         for (int i = 0 ; i < 5 ; i ++){
-            solutionPaths[i] = new Path(count, solution[count+1], solution[count+2]) ;
+            solutionPaths[i] = new Path(count, solution[count+1], solution[count+2], mv) ;
+            solutionPaths[i].setRotation(solution[count]);
+            if ((solutionPaths[i].getX() != 0) && (solutionPaths[i].getY() != 0)){
+                solutionPaths[i].setOnGrid(true);
+            }
+            System.out.println(solutionPaths[i].getOnGrid());
             count +=3;
         }
     }
 
-    public void compareToWin() throws IOException {
-        createSolutionPaths();
+    public boolean compareToWin() throws IOException {
+        boolean[] res = new boolean[5] ;
         List<Path> currentPaths = mv.getListPath() ;
-        boolean reussi = false ;
         for (int i = 0 ; i < currentPaths.size() ; i++){
-            ;
+
+            if ((currentPaths.get(i).getOnGrid() == true) && (solutionPaths[i].getOnGrid() == true)){
+                if ((currentPaths.get(i).getX() != solutionPaths[i].getX()) || (currentPaths.get(i).getY() != solutionPaths[i].getY())){
+                    res[i] = false ;
+                }
+                else{
+                    if (currentPaths.get(i).getRotation() == solutionPaths[i].getRotation()) res[i] = true ;
+                    else res[i] = false ;
+                }
+            }
+            else{
+                if (solutionPaths[i].getOnGrid() == true) res[i] = false ;
+                else res[i] = true ;
+            }
+            System.out.println(res[i]);
         }
+
+        return (res[0] && res[1] && res[2] && res[3] && res[4]) ;
     }
 
     public void loadLevel(int nblevel) {
@@ -127,7 +145,8 @@ public class Controller {
     }
 
     public void createNextLevel() throws IOException {
-        numNiveau++ ;
+        System.out.println("Niveau : " + numNiveau);
+        createSolutionPaths(numNiveau);
         int[] current = new int[16] ;
         if (numNiveau < niveaux.size()){
             current = niveaux.get(numNiveau).getNiveau() ;
@@ -141,9 +160,6 @@ public class Controller {
                 mv.getListCells().get(i).setType_cell(current[i]);
             }
         }
-    }
-
-    public int getNumNiveau(){
-        return numNiveau ;
+        numNiveau++ ;
     }
 }

@@ -148,7 +148,7 @@ public class MainVue extends Application {
 
         draw();//attention peu etre avant
 
-        oldMain(b); // fonction provisoire pour afficher dans la console
+        oldMain(); // fonction provisoire pour afficher dans la console
     }
 
     public void createButton(){
@@ -300,11 +300,11 @@ public class MainVue extends Application {
     }
 
     // [TEMPORAIRE] fonction pour effectuer des test
-    public void oldMain(int a) throws IOException {
+    public void oldMain() throws IOException {
         c.lireNiveaux();
         c.createNextLevel();
-        c.loadLevel(a);
         draw();
+        /*
         btnNext.setOnAction(new EventHandler <ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -316,6 +316,7 @@ public class MainVue extends Application {
                 }
             }
         });
+        */
     }
 
     public List<Cell> getListCells() {
