@@ -62,7 +62,7 @@ public class MainVue extends Application {
     // les differents buttons
     private Button [] btns;
     private Button game = new Button("PLAY");
-    private Button parametre  = new Button("SELECT LEVEL");
+    //private Button parametre  = new Button("SELECT LEVEL");
     private Button quit_the_game = new Button("QUIT THE GAME");
     private Button quit  = new Button("QUIT");
 
@@ -110,7 +110,7 @@ public class MainVue extends Application {
         configuration.setMinWidth(300);
         scenetitle_Configuration.setId("CONFIGURATION-text");
 
-        create_button_level();
+        //create_button_level();
         set_racine_configuration();
         set_vbox_button_configuration();
         set_contenaire_configuration();
@@ -136,7 +136,7 @@ public class MainVue extends Application {
         //FXMLLoader fxmlLoader = new FXMLLoader(MainVue.class.getResource("hello-view.fxml"));
 
         //Lancement de la fenetre du jeu
-        cadre.getChildren().add(btnNext);
+        //cadre.getChildren().add(btnNext);
         Scene scene = new Scene(cadre, 600, 400);
         stage.setTitle("Chaperon Rouge");
         stage.setScene(scene);
@@ -157,20 +157,20 @@ public class MainVue extends Application {
             }
         });
 
-        parametre.setId("button-even");
+      /*  parametre.setId("button-even");
         parametre.setOnAction( e -> {
             configurer();
-        });
+        });*/
 
         quit.setId("button-even");
         quit.setOnAction( e -> {
             Platform.exit();
         });
 
-        vbox_button_start.getChildren().addAll(game, parametre, quit);
+        vbox_button_start.getChildren().addAll(game, quit);
         vbox_button_start.setAlignment(Pos.CENTER);
         vbox_button_start.setSpacing(20);
-        parametre.setMinSize(150, 50);
+        //parametre.setMinSize(150, 50);
         quit.setMinSize(150, 50);
         game.setMinSize(150, 50);
     }
@@ -188,7 +188,7 @@ public class MainVue extends Application {
         hbox_start .setAlignment(Pos.CENTER);
         headertext.getChildren().add(hbox_start);
     }
-
+/*
     public void create_button_level(){
         //créer les  6 Buttons  3x2 btn
         int nbCols = 3;
@@ -225,7 +225,7 @@ public class MainVue extends Application {
             paneButton_configuration.add(btns[i], i % nbCols, i / nbCols);
         }
     }
-
+*/
     public void set_vbox_button_configuration  (){
         vbox_button_configuration.getChildren().addAll(quit_the_game);
         vbox_button_configuration.setAlignment(Pos.CENTER);

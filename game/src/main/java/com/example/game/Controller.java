@@ -85,7 +85,6 @@ public class Controller {
             if ((solutionPaths[i].getX() != 0) && (solutionPaths[i].getY() != 0)){
                 solutionPaths[i].setOnGrid(true);
             }
-            System.out.println(solutionPaths[i].getOnGrid());
             count +=3;
         }
     }
@@ -108,7 +107,6 @@ public class Controller {
                 if (solutionPaths[i].getOnGrid() == true) res[i] = false ;
                 else res[i] = true ;
             }
-            System.out.println(res[i]);
         }
 
         return (res[0] && res[1] && res[2] && res[3] && res[4]) ;
@@ -126,7 +124,6 @@ public class Controller {
     }
 
     public void createNextLevel() throws IOException {
-        System.out.println("Niveau : " + numNiveau);
         createSolutionPaths(numNiveau);
         int[] current = new int[16] ;
         if (numNiveau < niveaux.size()){
