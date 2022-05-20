@@ -150,7 +150,8 @@ public class Path {
                     }
 
                     if (succes){
-                        System.out.println("bravo");
+                        int level = mv.getC().getNumNiveau() + 1 ;
+                        System.out.println("bravo ! Tu passe au niveau : " + level);
                         try {
                             mv.getC().createNextLevel();
                             mv.draw() ;

@@ -77,15 +77,17 @@ public class Controller {
     }
 
     public void createSolutionPaths(int niveau) throws IOException {
-        int[] solution = solutions.get(niveau).getSolution() ;
-        int count = 0;
-        for (int i = 0 ; i < 5 ; i ++){
-            solutionPaths[i] = new Path(count, solution[count+1], solution[count+2], mv) ;
-            solutionPaths[i].setRotation(solution[count]);
-            if ((solutionPaths[i].getX() != 0) && (solutionPaths[i].getY() != 0)){
-                solutionPaths[i].setOnGrid(true);
+        if (niveau <= 6){
+            int[] solution = solutions.get(niveau).getSolution() ;
+            int count = 0;
+            for (int i = 0 ; i < 5 ; i ++){
+                solutionPaths[i] = new Path(count, solution[count+1], solution[count+2], mv) ;
+                solutionPaths[i].setRotation(solution[count]);
+                if ((solutionPaths[i].getX() != 0) && (solutionPaths[i].getY() != 0)){
+                    solutionPaths[i].setOnGrid(true);
+                }
+                count +=3;
             }
-            count +=3;
         }
     }
 
@@ -139,5 +141,9 @@ public class Controller {
             }
         }
         numNiveau++ ;
+    }
+
+    public int getNumNiveau() {
+        return numNiveau ;
     }
 }
