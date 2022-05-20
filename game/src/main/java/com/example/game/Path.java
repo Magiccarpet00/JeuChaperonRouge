@@ -243,7 +243,6 @@ public class Path {
                 }
                 break;
         }
-
         if(rotation == 0 || rotation == 2){
             tile.setHeight(scaleMin);
             tile.setWidth(scaleMax);
@@ -253,8 +252,6 @@ public class Path {
         }
         this.tile.setArcHeight(10);
         this.tile.setArcWidth(10);
-
-
     }
 
     public void setRotation(int r){this.rotation = r ;}
@@ -265,6 +262,5 @@ public class Path {
     public int getRotation(){return rotation ;}
     public int getX(){return (int) gridX;}
     public int getY(){return (int) gridY;}
-
 
 }

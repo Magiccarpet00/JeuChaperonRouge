@@ -37,10 +37,6 @@ public class MainVue extends Application {
 
     private Pane cadre = new Pane();
 
-    private Button btnReset = new Button();
-    private Button btnRotate = new Button();
-    private Button btnExecute = new Button();
-
     private Button btnNext = new Button("next level") ;
 
     private int SIZE_GRID = 3;
@@ -304,19 +300,7 @@ public class MainVue extends Application {
         c.lireNiveaux();
         c.createNextLevel();
         draw();
-        /*
-        btnNext.setOnAction(new EventHandler <ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    c.createNextLevel() ;
-                    draw();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        */
+
     }
 
     public List<Cell> getListCells() {

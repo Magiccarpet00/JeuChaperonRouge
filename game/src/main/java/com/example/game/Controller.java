@@ -31,25 +31,6 @@ public class Controller {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
-    public  void play (){
-
-    }
-    public void configurer (){
-
-    }
-
-    public void eventReset(){
-
-    }
-
-    public void eventRotate(){
-
-    }
-
-    public void eventExecute(){
-
-    }
-
     public Cell selectCell(int x, int y){
         Cell c = new Cell(0,0,new Rectangle(), new Rectangle());
         for (int i = 0; i<mv.getListCells().size(); i++){
